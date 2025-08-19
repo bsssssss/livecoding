@@ -1,0 +1,13 @@
+setbpm 160
+
+p 1 
+    $ stack [
+        jux (slow (1.5) . rev) $
+        superimpose (slow 2 . (|+ n 7)) $
+        note (scale "minor" $ floor <$> (mask "1 0 0 1 0" $ run 8 |* 1.3))
+        # s "supersaw"
+        # sustain 0.2
+        # octave "4 5"
+    ]
+
+hush

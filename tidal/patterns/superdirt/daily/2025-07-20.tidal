@@ -1,0 +1,11 @@
+setbpm 170
+
+p 1 
+    $ stack [
+        s (sew (necklace 7 [3,5]) "[bd*16, sd*8]" "rd*2")
+        # bank "rolandtr909"
+        # legato 1
+        # speed 2
+    ]
+
+hush

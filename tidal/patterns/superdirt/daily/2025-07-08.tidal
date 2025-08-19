@@ -1,0 +1,25 @@
+setbpm 220
+
+hush
+
+p 1
+    $ echoWith 2 (3/16) ((|+ n 2) . (# speed 1.2) . (while "<0 1>/2" (sh (1/2))))
+    $ stack [
+        bank "rolandtr909" "{bd(3,8)!2 [~ sd]}%2"
+        ,
+        bank "rolandtr909" "{hh*4 hh*2 hh(3,8,1)}%2" # speed 2
+    ]
+    -- # silence
+
+p 2
+    $ stack [
+        struct "1*8" $
+        s "braids"
+        # model 14
+        # note "<a b e>'min'oo'<9 8 9 8 7>"
+        # legato (segment 16 $ range 1 0.1 $ saw)
+        # gain 0.7
+        # tilt 0.0 # curve 0
+    ]
+
+

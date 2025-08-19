@@ -1,0 +1,40 @@
+setbpm 160
+
+p 1
+    $ stack [
+        slow "[1|2|4|8]/4" $
+        superimpose ( slow 8 . (|* speed 2) . (# tilt 0) ) $
+        juxBy 0.4 ((|+ n 1) . (|+ note 0.1)) $
+        ply "[1|2|8]*16" $
+        s "kickfm*16"
+        # n (saw * 16 * (slow (50 * 4) $ run 50))
+        # legato (range 0.5 2 $ slow 4 saw)
+        # note (rangex 36 0.1 $ slow 1 saw)
+        |* speed "[1|2|8]"
+    ]
+    # mu 2
+
+p 2 
+    $ mask "<1!8 1!4 0!2 1!16 0!4>"
+    $ slow "<4!8 1!8 2!4 1!8>"
+    $ mask "<1 1 1 [0|1]>"
+    $ juxBy 0.1 (sh (2/8) . (|* speed 8))
+    $ stack [
+        s "[bd <~ sd>]*4" # bank "rolandtr909"
+        ,
+        ply 1 $
+        sh (1/4) $
+        s "hh(3,8)!2" # bank "rolandtr909"
+        # gain (range 0.6 1 $ fast 3.3 saw)
+    ]
+    |+ n 2
+    # mu 3
+    -- # silence
+
+p 3 
+    $ stack [
+        s "~ [cp | cp(3,8)]" # bank "rolandtr505"
+        # mu 10
+        ,
+        s "<cr ~ ~ ~>" # bank "rolandtr909" # legato (1/8)
+    ]

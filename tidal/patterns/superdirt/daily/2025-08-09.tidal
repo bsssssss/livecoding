@@ -1,0 +1,86 @@
+setcps 0.8
+
+p 4
+    $ fast 1
+    $ stack [
+        slow 4 $
+        juxBy 0.75 (sh (1/4)) $
+        struct "1*32" $ gain (ribbon 0 2 $ range 0.7 1 $ fast 3 saw)
+        # s "sinst" # legato 3 # amp 1.8 # note "2" # n (27) # begin ( ribbon 0 1 $ fast 1 saw |* 0.5 ) # tilt 0.5
+        -- # lpf 9000
+        -- # silence
+        ,
+        slow 1 $
+        juxBy 0.5 (sh (1/2)) $
+        struct "1*32" $ gain (ribbon 0 2 $ range 0.7 1 $ fast 3 saw)
+        # s "clak" # legato 3 # amp 0.9 # note "-6" # n 1 # begin ( slow 1 sine |* 0.5 ) # tilt 0.5
+        # lpf 1000
+        -- # silence
+    ]
+    # silence
+
+p 2
+    $ slow 2
+    $ superimpose (sh (1/8) . slow "<2 1>/16" . (|* combf (ribbon 0 2 $ rangex (1/128) 1 $ rand)) . (# combf_fb 0.02) . rev)
+    $ while "<0 1>/8" (while "<0 <1 [0 1]>>" (inside 2 rev))
+    $ stack [
+        swingBy (1/3) 4 $
+        jux (rev . sh (1/8)) $
+        superimpose (inside 2 $ sh (2/8) . slow 1 . (# speed 0.5)) $
+        s "[bd <hh ~>] <rim sd>" # bank "korgm1" # gain 0.8 |* speed 1 # legato 8
+        -- # silence
+        ,
+        s "<bd!3 ~> sd:10" # bank "undo" # slide (-2)
+        ,
+        slow 1 $
+        s "hh*16" # bank "undo" # gain (saw) # n 14
+    ]
+    # combf (8000 |+ (range (-20) 20 rand)) # combf_fb 0.02 
+    # silence
+    -- # shape 0.1
+
+do
+p 1 $ silence
+p 2 
+    $ jux rev
+    $ slow 1
+    $ superimpose (bite 4 "{0@3 0@3 2@2}%16" . (|* speed 2))
+    -- $ ply 8
+    $ stack [
+        fast 8 $
+        s "bd sd*1" # sustain 0.2
+        # gain (saw)
+        , 
+        s "hh*16" # gain (range 0.5 1 saw)
+        -- # silence
+    ]
+    # bank "korgkrz" # n 1 # amp 0.1 |* speed 2
+    # silence
+
+xfadeIn 1 16 
+    $ slice 4 (run 3 |% 8) $ s "addor:4" # tilt 0.5 # amp 1.5 # note (-1)
+
+xfadeIn 3 16
+    $ slow 8
+    $ jux (slow (2/3))
+    $ bite 8 (slow 3 $ run 9)
+    $ superimpose (sh (3/16) . (# note 1) . (|* gain 0.9))
+    $ stack [
+        fast 8 $
+        ply 1 $
+        s "bd sd" # bank "akaixr10" # legato 1 
+        -- # gain (ribbon 0 1 $ range 0.1 1 $ segment 32 $ saw)
+        ,
+        fast 4 $
+        s "~ tb" # bank "akaixr10" # n 1
+    ]
+    # n 1 |* amp 0.0
+
+xfadeIn 1 8
+    $ stack [
+        jux (rev . slow (5/6)) $
+        s "kawaik4*8" # bank "leg" # sustain 2 # n 87 # begin (ribbon 0 2.5 $ rand) |* speed (ribbon 4 4 $ "[1|2]*8")
+        # lpf (rangex 1000 3000 $ slow 4 perlin) # lpq 0.05
+        # note (-2)
+        # gain 0.8
+    ]
