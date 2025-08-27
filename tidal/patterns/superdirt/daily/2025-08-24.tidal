@@ -1,0 +1,34 @@
+setcps 0.8
+
+p 1 
+    $ stack [
+        slow "2" $
+        superimpose 
+            (sh ("1 <3 1>"/16) 
+            . (# speed 2) 
+            ) $
+        s "[<[bd, sd] bd [~ bd] ~> <hh!3 cp>]*4" 
+        # bank "rolandtr909"
+        # combf (rangex 40 200 $ saw) # combf_fb 0.3
+        -- # silence
+        ,
+        -- jux rev $
+        while "<0 1>" (iter 4) $
+        s "bd(3,8)" 
+        # s "bd:1 [bd, hh] sd:0"
+        # bank "rolandtr808" 
+        # mu 10 # accelerate (-0.2)
+        # legato 1
+        -- # silence
+        -- ,
+        -- sh (1/8) $
+        -- s "~ sd:1" # bank "rolandtr808" # mu 4
+        -- -- # silence
+        -- ,
+        -- mask "<1 0>" $
+        -- note "[e5, c2, ~ e4]"
+        -- |+ note 12
+        -- # s "braids" # model 4
+        -- # timbre 0
+        -- # timbre_env 1 # timbre_env_curve ( 8 )
+    ]

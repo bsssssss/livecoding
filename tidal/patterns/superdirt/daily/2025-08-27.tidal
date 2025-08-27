@@ -1,0 +1,27 @@
+setcps 0.6
+
+do
+let dr1 = beat "[0, 1.5, 3, 7]" 8 $ s "bd" # bank "rolandtr808"
+p 1
+    $ slow 1
+    $ iter 1
+    $ while "0 1 <0 1>" (|* speed "<2!2 3>")
+    $ bite 8 (run "<8 5> 7")
+    $ jux rev
+    $ stack [
+        dr1 # n 1 # legato 1,
+        fast 2 $ dr1 # legato 1,
+        fast 2 $ inside 2 rev $ dr1 # s "hh",
+        s "hh*32" # bank "rolandtr909" |* gain (saw)
+    ]
+    # combf (rangex 10 10000 $ slow 2 tri |* "<1 0.5>" |* "[1|2]*2")
+    -- # combf_fb 0.2
+    # room 0.5 # size "[0.1|0.99]"
+
+p 2 
+    $ slow 2
+    $ note (scale "minor" $ "[0,1,3,4]" |- "<0!2 2!2>")
+    # s "plaits" # tilt 0
+    # gain 0.8
+    # orbit 1
+    # room 0.5 # size "0.8"

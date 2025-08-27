@@ -1,0 +1,24 @@
+setcps 1
+
+p 1
+    -- $ slow 4
+    -- $ jux rev
+    -- $ bite 4 (run "<<8 5> 7>")
+    -- $ iter 2
+    -- $ echoWith 16 (1/16) ((|* gain 0.97) . (|* speed 1.2))
+    -- $ superimpose (sh (1/2) . (|* speed "<2 <4 5>>"))
+    -- $ slow 2
+    $ sound "<bd*2 bd> [hh <sd sd*2>]"
+    # bank "rolandtr808"
+    # speed (range 1 0.5 saw)
+    # lpf (rangex 1000 10000 $ slow 4 saw) # lpq 0.5
+    # n 0 
+    -- # legato 0.2 
+    -- # tilt 0
+    # room 0.2 # size 0.9
+
+p 2 
+    $ note (scale "major" "[0,1,2]" |+ "<0 1>/2")
+    # sound "bs_saw" # lpf 2000 # gain 0.6
+
+hush

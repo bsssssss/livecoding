@@ -1,0 +1,30 @@
+setcps 1
+
+p 1
+    $ stack [
+        -- slow 8 $
+        superimpose (slow (3/2) . (# s "hh") . (# hpf 8000)) $
+        jux (rev . (# s "ht")) $
+        someCyclesBy 0.5 (bite 8 (run 8 |% 3)) $
+        iter 11 $
+        ply "16" $
+        note "[<0*2 -12>, [5]*5]"
+        # s "lt" # bank "rolandtr808"
+        # legato 3 # tilt 0.5
+        # begin (segment 128 $ slow 8 $ tri |* 0.2)
+        # orbit 0
+        |+ note (-7)
+        -- # mu 2
+        # lp2_f 8000
+        -- # room 0.3 # size 0.9
+        ,
+        rev $
+        plyWith "<2 4 8>/12" ((|+ note 7) . (|* gain 0.9)) $
+        superimpose (slow 1 . sh (1/8) . (# s "hh lt")) $
+        echoWith 4 (3/8) (# s "sd:0") $
+        s "bd:1/4" # bank "rolandtr808"
+        # lp2_f 1000
+        |* gain 0.9
+        # room 0.8 # size 0.9 # orbit 1
+        -- # silence
+    ]
