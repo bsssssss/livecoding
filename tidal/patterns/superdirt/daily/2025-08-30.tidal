@@ -1,0 +1,46 @@
+setcps 1
+
+xfadeIn 3 2
+    $ slow 2
+    $ bite 5 (run "4 <2!3 3>")
+    $ superimpose (rev . (|* speed 4))
+    $ stack [
+        -- jux (slow 1.25) $
+        slow 2 $
+        n "[0 <1 2>]*4" # s "addor" 
+        |* n 1
+        |+ n 7
+        |+ note (-5)
+        # legato 1
+        -- # silence
+        ,
+        slow 2 $
+        s "bd:1 hh" # bank "rolandtr808"
+        # sustain 1 # tilt 0
+        # speed (segment 32 $ range 2 (1/8) $ saw)
+        -- # silence
+    ]
+
+p 2
+    $ slow 2
+    $ bite 5 (run "4 3")
+    $ superimpose (sh (1/4) . (# s "cp oh:1") . (|* gain 0.9))
+    $ s "<[bd*2]!2 bd(3,8,<0 0 3>)>" 
+    # bank "rolandtr909"
+    # note (-2)
+    -- |* speed 2
+
+
+p 1 
+    $ slow 2
+    -- $ bite 4 (run "4 3")
+    $ jux (slow 2)
+    $ fast "1 2 1 <1 2>"
+    $ ply 2 $ iter 4
+    $ every 4 (rev)
+    $ s "bd:1 lt hh*8 cb" 
+    # bank "rolandtr808"
+    # sustain (segment 32 $ range 0.08 0.1 $ tri) # tilt 0.1
+    # speed (segment 32 $ range 8 1 $ slow 3 saw)
+    # accelerate (-2)
+    # room 0.7 # size 0.01
