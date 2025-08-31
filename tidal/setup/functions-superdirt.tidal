@@ -166,6 +166,8 @@ let
     even = pF "even"
 -- MU
     mu = pF "mu"
+-- VERB
+    miverb_wet = pF "miverb_wet"
 -- BS_RONGS
     structure        = pF "structure"
     brightness       = pF "brightness"
