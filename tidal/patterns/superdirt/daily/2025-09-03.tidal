@@ -1,0 +1,37 @@
+setcps 0.8
+
+xfadeIn 1 16
+    -- $ iter 2
+    -- $ jux rev
+    $ stack [
+        slow 2 $
+        superimpose (press . (# s "lt")) $
+        s (pace 8 "bd@3 bd@2 ~ bd*2 bd@1.5")
+        ,
+        superimpose (sh (1/4) . (# s "rim") . (# speed (3))) $
+        s "hh(3,8,<0 0 1 0 3>)"
+        ,
+        s "~ <sd:1 ~>"
+    ]
+    # bank "rolandtr808@3 rolandtr909"
+    # mu 2
+    # coarse 3
+    # silence
+
+d2
+    $ stack [
+        jux rev $
+        slow 2 $
+        note (scale "major" 
+            $ iter 1 
+            $ fast "{1 2 1@2 2}%8" 
+            $ (run 4 |+ "0 1 -1" |+ "{0 3 0 6@1.5 2}%3" 
+                |+ (slow 4 $ run 4 |* 2)))
+        # s "braids" # model 11
+        # octave 4
+        # tilt 0.3
+        # gain 0.7
+        # miverb_wet 0.9
+        # mu 2
+        # legato 8
+    ]

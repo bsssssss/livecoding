@@ -1,0 +1,46 @@
+setcps 0.7
+
+d2 
+    $ slow 2
+    $ while "<0 [0 1] 0 1>" (iter 2 . rev)
+    $ juxBy 0.3 (rev . (|* speed 1.5))
+    $ s "[bd hh]*2 [sd:1 [rim ht]*2]" # bank "rolandtr808"
+    # accelerate (-0.9)
+    # legato "0.2 0.75"
+    # distort 0.3
+    # mu 20
+    # coarse 1.5
+    # speed (segment 32 $ rangex 0.5 4 $ fast 4 $ saw)
+    # gain 0.6
+
+d1
+    $ slow 2
+    $ superimpose (sh (1/8) . rev . (|* speed (2)))
+    $ slow (1/"<2 [4 2]>") 
+    $ n ("0 ~ [~ 5] [~ 1]")
+    |+ n 37
+    # s "kickfm"
+    # legato 0.4
+    # tilt 0
+    # miverb_wet "1"
+    # speed ("<4 5 4 9>" |* (1/5))
+    # accelerate (-0.2)
+
+d3 
+    $ iter 8
+    $ stack [
+        superimpose (sh (1/"<4 2>/2") . (# s "rim sd")) $
+        s "bd <~ bd(3,8,<0 1 0 3>)>"
+        # bank "rolandtr909"
+        # speed (2/3)
+        # combf 2000 # combf_fb 0.002
+        # distort 0.2
+        # sustain 0.2
+        ,
+        superimpose (slow 2 . sh (1/"<4 2>/2") . (|* speed (5/3))) $
+        s "hh(5,16)" # bank "rolandtr808"
+        # legato 0.1
+        # note (-5)
+    ]
+
+all $ (# cps (segment 16 $ range 0.2 1 $ saw))
