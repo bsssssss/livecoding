@@ -1,6 +1,6 @@
 setcps 0.8
 
-xfadeIn 1 16
+xfadeIn 1 8
     -- $ iter 2
     -- $ jux rev
     $ stack [
@@ -13,10 +13,11 @@ xfadeIn 1 16
         ,
         s "~ <sd:1 ~>"
     ]
-    # bank "rolandtr808@3 rolandtr909"
-    # mu 2
-    # coarse 3
-    # silence
+    # bank "rolandtr808"
+    |* speed 2
+    # mu 7
+    -- # coarse 3
+    -- # silence
 
 d2
     $ stack [
@@ -28,10 +29,10 @@ d2
             $ (run 4 |+ "0 1 -1" |+ "{0 3 0 6@1.5 2}%3" 
                 |+ (slow 4 $ run 4 |* 2)))
         # s "braids" # model 11
-        # octave 4
-        # tilt 0.3
+        # octave 6
+        # tilt 0.0
         # gain 0.7
         # miverb_wet 0.9
         # mu 2
-        # legato 8
+        # legato 2
     ]

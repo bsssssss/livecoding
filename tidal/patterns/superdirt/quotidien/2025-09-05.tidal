@@ -1,0 +1,73 @@
+setcps (5/9)
+
+d1
+    $ (|* speed (1/1))
+    $ iter 1
+    -- $ ply 2
+    -- $ rev
+    $ stack [
+        -- jux rev $ 
+        while "<0 1>/2" (rev) $
+        bite 8 (fast "{1@1.5 2}%4" $ run 8) $
+        echoWith 3 (3/8) (|* speed 2) $
+        s "[bd, hh] ~ ~ sd:1  bd ~ ht ~"
+        # bank "rolandtr707"
+        # combf "8000 100"
+        # shape 0.3
+        # pan (segment 32 $ fast 9 saw)
+        # speed (rangex 1 1 $ segment 32 $ slow 4 sine)
+        # coarse 4
+        ,
+        superimpose (sh (1/8) . (# s "rim")) $
+        s "[bd](3,8,<0 1 0 2 0 3>)!2"
+        # bank "rolandtr808"
+        # n 1
+        # shape 0.4
+        # cut "-1"
+        # sustain 0.1
+        # speed 2
+        # amp 1
+        # accelerate (-0.1)
+        ,
+        slow 2 $
+        rot "<0 1>/4" $
+        s "[oh sd](3,8,<0 1 0 2 0 3>)!2"
+        # bank "rolandtr808"
+        # n 1
+        # shape 0.4
+        # cut "-1"
+        # sustain 0.1
+        # speed 8
+        # amp 1
+        # accelerate (-0.1)
+    ]
+    -- # silence
+
+d2
+    $ stack [
+        slow 4 $
+        -- bite 8 (fast "{1@2 2}%4" $ run 8) $
+        echoWith 4 (3/16) (|+ note 7) $
+        sh (1/8) $
+        note "[0 3, 5]"
+        # s "braids" # model 4
+        # lpf 8000
+        # amp 0.2
+        # sustain 2
+        # tilt 0.0
+        # miverb_wet 0.8
+        # octave 4
+    ]
+
+p 1
+    $ juxBy 0.25 (rot 1 . sh (-3/16) . (|* gain 0.7) . (# shape 0.7))
+    $ iter 2
+    $ iter "{1 2 1@1.5 2 2}%6"
+    $ s "bd [sd [sd lt]*2]"
+    # n 0
+    # bank "rolandtr808"
+    # speed "{1 2 1@2 2}%4"
+
+p 2 $ s "[<rim rim(3,8,1)>, hh(3,8)!2]" # bank "rolandtr808"
+
+p 1 $ s "bd*8 sd*16" # bank "DoepferMS404"
