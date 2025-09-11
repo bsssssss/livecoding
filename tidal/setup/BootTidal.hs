@@ -1,5 +1,6 @@
 :set -fno-warn-orphans -Wno-type-defaults -XMultiParamTypeClasses -XOverloadedStrings
 :set prompt ""
+:set -package tidal
 
 -- Import all the boot functions and aliases.
 import Sound.Tidal.Boot
@@ -9,39 +10,21 @@ import qualified Data.Map.Strict    as Map
 
 default (Rational, Integer, Double, Pattern String)
 
-:{
-    mspTarget = Target {
-        oName      = "msp",
-        oAddress   = "127.0.0.1",
-        oHandshake = False,
-        oPort      = 7400,
-        oBusPort   = Nothing,
-        oLatency   = 0.2,
-        oSchedule  = Pre BundleStamp,
-        oWindow    = Nothing
-    }
-    mspShape = OSC "/tidal/event/" $ Named {requiredArgs = ["s_max"]}
-    s_max = pS "s_max"
-    bus = pI "bus"
+let mspTarget = Target { oName = "msp", oAddress = "127.0.0.1", oHandshake = False, oPort = 7400, oBusPort = Nothing, oLatency = 0.2, oSchedule = Pre BundleStamp, oWindow = Nothing }
+let mspShape = OSC "/tidal/event/" $ Named {requiredArgs = ["s_max"]}
+let s_max = pS "s_max"
+let bus = pI "bus"
 
-    editorTarget = Target {
-        oName = "editor",
-        oAddress = "127.0.0.1",
-        oPort = 6013, oLatency = 0.02,
-        oSchedule = Pre BundleStamp,
-        oWindow = Nothing,
-        oHandshake = False,
-        oBusPort = Nothing 
-    }
-    editorShape = OSCContext "/editor/highlights"
+let editorTarget = Target { oName = "editor", oAddress = "127.0.0.1", oPort = 6013, oLatency = 0.02, oSchedule = Live, oWindow = Nothing, oHandshake = False, oBusPort = Nothing }
+let editorShape = OSCContext "/editor/highlights"
 
-    oscmap = [(mspTarget, [mspShape]), (editorTarget, [editorShape]), (superdirtTarget { oPort = 57520 }, [superdirtShape])]
-:}
+-- oscmap = [(mspTarget, [mspShape]), (superdirtTarget { oPort = 57120, oLatency = 0.02 }, [superdirtShape]), (editorTarget, [editorShape])]
 
 -- Create a Tidal Stream with the default settings.
 -- To customize these settings, use 'mkTidalWith' instead
 -- tidalInst <- mkTidal
-tidalInst <- mkTidalWith oscmap defaultConfig 
+-- tidalInst <- mkTidalWith oscmap defaultConfig 
+tidalInst <- mkTidalWith [(superdirtTarget { oPort = 57120, oLatency = 0.02 }, [superdirtShape]), (editorTarget, [editorShape])] (defaultConfig {cFrameTimespan = 1/50, cProcessAhead = 1/20}) 
 
 -- tidalInst <- mkTidalWith [(superdirtTarget { oLatency = 0.01 }, [superdirtShape])] (defaultConfig {cFrameTimespan = 1/50, cProcessAhead = 1/20})
 
