@@ -1,0 +1,24 @@
+setcps 1
+
+p 1 
+    $ jux rev
+    $ fast "<2 1>"
+    $ note "[ 0 7 ] 10 ~ [ 14, <17 ~> ]" 
+    # octave "[4 5]/1.5"
+    |+ note (0)
+    -- |+ note "<0 3 5>/2"
+    # sound "plaits" 
+    # model 3
+    # timbre 0.2
+    # tilt 0.01 
+    # legato 1
+    # curve (-4)
+    # shape 0.99
+    -- # miverb_wet 1
+
+p 2 
+    $ slow 2
+    $ superimpose (fast 2 . rev . (# bank "rolandtr909"))
+    $ superimpose (fast 2 . iter 4 . (# speed 2))
+    $ s "bd [sd:1 bd*[32 16]]" 
+    # bank "rolandtr808"

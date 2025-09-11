@@ -74,3 +74,13 @@ p 1
 p 2 $ s "[<rim rim(3,8,1)>, hh(3,8)!2]" # bank "rolandtr808"
 
 p 1 $ s "bd*8 sd*16" # bank "DoepferMS404"
+
+setbpm 180
+
+p 1
+    $ jux rev
+    $ stack [
+        s "[[bd, oh]@3 bd@2]*<1 1 2>"
+        # bank "emusp12"
+        # speed 2
+    ]

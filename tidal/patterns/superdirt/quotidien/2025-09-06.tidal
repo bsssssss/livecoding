@@ -1,0 +1,24 @@
+setbpm 120
+
+p 1
+    -- $ rev
+    $ superimpose (sh (1/8) . (# bank "yamahatg33") . (|* speed 2))
+    -- $ ply 2
+    -- $ iter "<1 2 1 4>/2"
+    $ stack [
+        superimpose (sh (3/8) . (# s "hh oh")) $
+        s "bd ~ sd:1 ~ ~ bd sd lt"
+        # bank "mpc1000"
+        ,
+        superimpose (fast 2 . sh (1/8) . (|* speed 2)) $
+        s "ht [cp, tb*2]"
+        # bank "mpc1000"
+        # krush 10
+        ,
+        s "<[bd sd] [bd(3,8,<0 0 0 3>) ~]>"
+        # bank "rolandtr909"
+        # mu 10
+    ]
+
+p 2 $ s "bd:1*4" # bank "rolandtr808" # mu 10
+
