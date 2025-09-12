@@ -1,0 +1,11 @@
+p 1 
+    $ stack [
+        juxBy 0.8 (fast (5/4) . rev) $
+        note (run 12 |% "<3 4 3 5>" |* 12 |- (run 3 |* 2.5))
+        # gain (rangex 0.5 1 $ slow 2 $ saw)
+        # s "plaits" # model 3
+        # tilt 0.5
+        # curve (-8)
+        # legato 2
+        # miverb_wet 0.8
+    ]
