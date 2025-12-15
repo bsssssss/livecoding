@@ -1,0 +1,28 @@
+setcps 0.7
+
+p 1
+    $ jux rev
+    $ slow 4 . while "0 1 0" (rev . fast 1.5) . plyWith "4" (|* gain "0.9 0.8")
+    $ stack [
+        -- rot 1 $
+        pace 16 $
+        rot "<0!4 3!4>" $
+        s "bd _ bd!4 ~ [ bd hh ]!6 sd@2 sd@2 sd@2"
+        # bank "leg"
+        |+ n "8 44"
+        |+ n 2
+        # legato 1
+        -- # silence
+        ,
+        pace 8 $
+        rot "<0!4 3!4>" $
+        s "bd:18 hh*2 ~ hh@1.5 sd hh@1.5 hh@2"
+        # bank "leg"
+        |+ n "8 9"
+        # legato 0.8
+        # shape 0.3
+        -- # silence
+        ,
+        s "kawaik4*2" # bank "leg" # legato 1
+        # n 108 # note (11)
+    ]

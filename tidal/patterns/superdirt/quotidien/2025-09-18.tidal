@@ -1,0 +1,52 @@
+setcps (2/3)
+
+xfadeIn 1 2
+    $ rev
+    $ slow 1
+    $ superimpose (sh (slow 2 $ "<1 3>/1.5"/"<4 6>/1.75") . (|* speed (2/5)) . (# sustain 0.13) . (# pan "0 1"))
+    $ superimpose (press . (# s "rolandtr808_sd:1"))
+    $ struct (iter 2 $ "1 1@3 1@2")
+    $ s "kickfm" # n "7 8"
+    |+ n (segment 32 $ range 12 500 $ slow 3 $ saw)
+    # speed (segment 32 $ range 1 8 $ slow 2 $ saw)
+    # legato 2 # tilt 0 # curve (-8)
+    |* gain 1
+    |* speed (1/5)
+
+xfadeIn 2 16
+    $ stack [
+        slow 5 $
+        sh (0/4) $
+        iter "<1 2>/16" $
+        s "bd:1@2 [<cp:3 ~ ~> <hh ~>]" # bank "rolandtr808"
+        # shape 0.2
+        # silence
+        ,
+        slow 5 $
+        superimpose (sh (1/4) . (|+ octave 1) . (# tilt 0.4) . (# curve 4) . (|* sustain 1.5) . (|* gain 0.9)) $
+        note (scale "minor" $ floor <$> (struct "1@2 1*<1 2 1 1 2>" $ range (-2) 9 $ slow 3 tri))
+        # s "plaits" # model 3
+        # tilt 0 # gain 0.9 # sustain 4 # curve (-2)
+        # octave "{4 5@1.5}%2"
+        # lpf 400
+        # silence
+    ]
+
+all $ superimpose (fast 1 . (|* speed 1)) . (|* speed 2)
+
+all $ id
+
+xfadeIn 1 16
+    $ slow 2
+    $ superimpose (rev . slow 1.25 . iter 1 . (|* speed 1.25) . (|+ n 0))
+    $ jux (rev . slow (1.5))
+    $ struct "1*2"
+    $ s "kickfm"
+    # n ("[5]" |+ 13)
+    # legato (segment 8 $ range 1 3 $ slow 1 saw) 
+    # tilt 0.8
+    # begin (segment 8 $ range 0 0.9 $ slow 8 $ perlin)
+    # gain (segment 8 $ rangex 0.5 1 $ slow 1.5 saw)
+    # shape 0.3
+    |* speed (1)
+    # silence

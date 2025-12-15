@@ -1,0 +1,15 @@
+setcps 0.8
+
+p 1 
+    $ fast 1
+    $ stack [
+        s (pace 8 $ "bd@3 bd@2 sd@3 hh bd@3 bd@2 sd@3")
+        # bank "rolandtr606" # mu 10
+        ,
+        -- sh (1/1) $
+        s (pace 8 $ sh (1/2) $ rev "~@3 bd:1@2 sd*2@3 hh")
+        # bank "rolandtr808"
+        |* speed (1) # accelerate (-0.2)
+        # sustain 3
+        # mu 20
+    ]

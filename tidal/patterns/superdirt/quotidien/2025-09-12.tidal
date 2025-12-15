@@ -1,11 +1,23 @@
+
+setbpm 180
+
 p 1 
+    $ linger ("<1 5 6 8>"/8)
+    $ iter 2
+    $ someCyclesBy 0.5 (rev)
     $ stack [
-        juxBy 0.8 (fast (5/4) . rev) $
-        note (run 12 |% "<3 4 3 5>" |* 12 |- (run 3 |* 2.5))
-        # gain (rangex 0.5 1 $ slow 2 $ saw)
-        # s "plaits" # model 3
-        # tilt 0.5
-        # curve (-8)
+        s "{bd:1 [bd sd] bd:2 [[bd:1] sd]!2 bd sd:3*4 ~}%8"
+        # bank "rolandtr808"
         # legato 2
-        # miverb_wet 0.8
+        # coarse 2
+        # distort 0.1
+        # speed 2
+        # accelerate (-0.3)
+        ,
+        s "{hh!5 ~ oh ~}%16"
+        # bank "rolandtr808"
+        # legato 1
+        ,
+        note (scale "minor" $ floor <$> (struct "1(3,8)*2" $ ribbon 0 2 $ fast 28 $ tri |* 5 |- 4) )
+        # s "braids" # tilt 0 # gain 0.8 # sustain 2 # curve (-4)
     ]

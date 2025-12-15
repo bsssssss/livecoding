@@ -167,7 +167,8 @@ let
 -- MU
     mu = pF "mu"
 -- VERB
-    miverb_wet = pF "miverb_wet"
+    miverb_send = pF "miverb_send"
+    gverb_send = pF "gverb_send"
 -- BS_RONGS
     structure        = pF "structure"
     brightness       = pF "brightness"
