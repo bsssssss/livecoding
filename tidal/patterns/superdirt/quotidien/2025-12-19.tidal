@@ -1,0 +1,27 @@
+setcps 1
+
+p 1 
+    $ slow 8
+    $ iter "<4!5 8>"
+    $ stack 
+    [
+        -- while "0 1" $ ply 2 $
+        superimpose (sh (1/4) . (# s "hh lt")) $
+        fast (fast 1.25 $ "0.5 1") $
+        s "[bd*8] sd:1" # bank "rolandtr808"
+        # gain (segment 32 $ range 0.5 1 $ fast 5 saw)
+        , 
+        s "cp/2" # bank "rolandtr808"
+        , 
+        sh (3/4) $
+        s "oh:1*4/2" # bank "rolandtr808" # sustain 0.2 # speed ( segment 32 $ range 1 0.5 $ fast 3.2 saw ) # gain 0.8
+        ,
+        slow 2 $
+        struct "1*8" $
+        note (scale "minor" "[0,2,3]" |+ 2) # s "braids"
+        # gain (segment 32 $ range 0.5 1 $ fast "<<1 0.77>@1.5 3>" saw)
+        # legato 0.9 # lp2_f ( segment 32 $ rangex 400 8000 $ fast 2.5 saw ) # lp2_q 0.9
+        # model 5 # timbre ( segment 32 $ range 0.4 0.9 $ fast 3.33 sine )
+        # octave 5
+        |* gain 0.6
+    ]
