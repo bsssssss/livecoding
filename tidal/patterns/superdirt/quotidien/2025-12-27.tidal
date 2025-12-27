@@ -1,14 +1,33 @@
-setcps 1
+setcps 0.4
 
-p 1 
-    $ slow 1
+p 2
+    $ slow 8
     $ superimpose (slow (7/8) . (|* speed (range 1 8 $ tri)))
     $ jux (rev . slow (5/4))
     $ s "lt*64 [ht hh]*64" # bank "rolandtr808"
-    # legato 2 # tilt 0.5
-    # begin (range 0 0.2 $ tri)
+    # legato 3 # tilt 0.5
+    # begin (range 0 0.02 $ tri)
     -- # miverb_send 1
     # lp2_f (segment 128 $ rangex 200 18000 $ sine) # lp2_q 0.9
-    -- # mu 200
+    # mu 2
 
 p 2 $ silence
+
+p 1 
+    $ chunk 2 ((# speed 1.5) . (sh (1/2)) . rev)
+    $ stack [
+        s "[bd:1 sd:1] [~ bd*3@2 [~ cb] cp]"
+        # bank "rolandtr808"
+        # speed "<1 [1.5 2 ~]>/1.5"
+        # legato 1
+        # mu 4
+        # coarse 2
+        # crush 8
+        # accelerate (-0.2)
+        ,
+        fast 2 $
+        struct "1(3,8)" 
+        $ s "hh oh" # bank "rolandtr606"
+        # legato 1
+    ]
+    # silence
