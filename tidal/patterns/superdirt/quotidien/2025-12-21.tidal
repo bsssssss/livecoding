@@ -1,0 +1,18 @@
+setcps 1
+
+p 1 
+    $ fast 5
+    $ jux (rev . slow 4 . (# tilt 0.9) . (# curve 24)) 
+    $ bite 3 "[0@2 1, 2]@3 1"
+    $ iter 1
+    $ plyWith 4 (|+ note "2 4 6")
+    $ slow "<2 3>"
+    $ iter "<4 5>/1.2" $ slow 2
+    $ slow 1
+    $ note ((segment 16 $ range 0 140 $ fast 9 $ saw) |% 4 |* 10) 
+    # s "plaits" # lpf 100 # model 2
+    # tilt 0.08 # curve (-4)
+    # sustain (segment 32 $ range 0.02 1 $ shrand 890)
+    # octave 5
+    # harm 0.9 # timbre 1
+    # hpf 100

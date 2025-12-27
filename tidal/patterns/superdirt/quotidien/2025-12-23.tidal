@@ -1,0 +1,76 @@
+setcps 1
+
+p 1 
+    $ slow 12
+    $ juxBy 0.2 (iter 4 . rev . sh (3/32) . (|+ note 7) . (# damping 0.4))
+    $ stack [
+        superimpose (
+            sh (1/2) . (# model 5) . (|+ octave 1)
+        ) $
+        struct "1*16 1*12"        
+        $ s "rings"
+        # model 0
+        # note ("[0, 9, 29 1]")
+        # octave "<1 0 [1 2]>/2"
+        # structure (segment 32 $ range 0.2 0.9 $ slow 8 tri)
+        # position (segment 32 $ range 0.1 0.9 $ fast (77/11) tri)
+        # brightness 0.2
+        # damping 0.5
+        # gain (segment 16 $ range 0.5 1 $ sh ("0 0.11") $ fast (111/16) sine)
+        # sustain 0.8 # tilt 0.000 # curve (-4)
+        # mu 2
+    ]
+
+p 2 
+    $ stack [
+        slow 5 $
+        note (scale "minor" "[0,1,2,8]")
+        # s "braids" # model 11
+        # sustain 5 # tilt 0 # curve (-4)
+        # gain 0.8
+        # lp2_f 1000
+    ]
+
+p 3
+    $ slow 2
+    $ superimpose (sh (-1/8) . iter 4 . (|+ note 24) . (|* gain 0.8))
+    $ stack [
+        mask "<1 1 1 <1 0>>" $
+        slow 4 $
+        s "[bd:1 hh](3,8)" # bank "rolandtr808"
+        # mu 1
+        # accelerate (-1)
+        # speed (segment 32 $ range 0.5 2 $ fast 9 saw)
+        ,
+        slow "<4 8>" $
+        s "[ht lt ~ cp:1](3,8,1)" # bank "rolandtr808"
+    ]
+
+all $ rev . plyWith 3 (|* gain 0.97) . slow 8
+
+all $ id
+
+p 1
+    $ slow 8
+    $ jux (sh (3/8) . (|+ note 23))
+    $ stack [
+        superimpose (
+            slow (2) 
+            . (# pan (segment 32 $ slow 2 $ sine))
+            . (|+ note 36) . (|* gain 0.9)
+            . (# tilt 0.4) . (# sustain 0.5)
+            ) $
+        while (fast 5 "0 1") ((|+ note (-12)) . (# model 1)) $
+        -- iter 4 $
+        slow 1 $
+        struct "1@3 1@2 1@1.5 1@3 1@4 1@1.5"
+        $ s "rings"
+        # note ("[0, 2]")
+        # octave (fast 1.23 $ "3 2")
+        # damping 0.9
+        # gain (fast (11/12) $ "0.5 1 0.8 0.6")
+        # lp2_f 5000
+        # tilt 0.9
+        # miverb_send 0.8
+    ]
+
