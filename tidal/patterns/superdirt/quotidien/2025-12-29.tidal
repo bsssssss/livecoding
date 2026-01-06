@@ -1,0 +1,54 @@
+setcps (2/3 * 2/3)
+
+p 1 
+    $ chunk 4 (slow 4 . (|* speed 0.8))
+    $ stack [
+        struct (pace 16 "1!3 0!2 1!5 0")
+        $ s "bd" # bank "undo"
+        # gain (segment 32 $ range 0.4 2 $ saw)
+        # note (-4)
+        -- # silence
+        ,
+        sh (-1/16) $
+        struct (pace 16 "1@3 0!2 1!5 0")
+        $ s "bd" # bank "undo"
+        # speed 2
+        -- # silence
+        ,
+        struct (pace 16 "1@3 0@2 1@5 0")
+        $ s "rings"
+        # note "[0,2,4]"
+        # octave 6
+        # model 0
+        # silence
+        ,
+        sh (1/8) $
+        struct (pace 16 "1@3 0@2 1@5 0")
+        $ s "cp"
+        # bank "rolandtr505"
+        # gain 1.2
+        -- # silence
+        ,
+        s (pace 8 "~ hh ~ hh ~ ~")
+        # bank "rolandtr606"
+        # legato 1
+        # note 2
+        -- # silence
+    ]
+    -- # silence
+
+p 2
+    $ chunk 3 (slow 4 . (jux rev) . (|* note (-1)))
+    $ slow "1 2"
+    $ stack [
+        superimpose (sh (3/16) . (|+ note "2 -2")) $
+        mask (pace 8 "1!3 0 1!2")
+        $ note (run 8 |% 2 |* (3))
+        # s "leg_dx"
+        # n 29
+        # octave 7
+        # legato 1
+        # tilt 0
+        # gain 1.0
+        # begin 0.08
+    ]

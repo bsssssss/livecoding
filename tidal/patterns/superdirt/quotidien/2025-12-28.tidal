@@ -1,0 +1,55 @@
+setcps (2/3)
+
+p 1 
+    $ superimpose ((# model 10) . sh (1/2))
+    $ superimpose (slow (2/3) . (|+ note 2) . (# sustain 0.1))
+    $ slow 8
+    $ jux (slow (111/112))
+    $ chunk 4 ((|+ note "12 7") . rev)
+    $ struct "1*16"
+    $ s "plaits" # model "9"
+    # harm 0.5
+    # timbre (segment 16 $ rangex 0.1 0.9 $ shrand 999)
+    # morph 0.6
+    # note (scale "minor" "[<0 -2>,1]")
+    # sustain 0.9
+    # tilt 0 # curve (-4)
+    # lp2_f 6000
+    # gain (segment 16 $ fast (9) sine)
+    |* cps (segment 32 $ range 0.2 0.9 $ slow 2 tri |* 1.2)
+
+p 2 
+    $ superimpose (sh (1.25) . (|* speed 1) . (|+ n 9))
+    $ superimpose (pressBy 0.95 . (# s "perc:8") . (# hpf 8000) . (|* gain 0.8) . (# speed (1/4)))
+    $ slow 2
+    $ struct "1"
+    $ s "bd" # bank "undo"
+    # tilt 0.002
+    # lp2_f (segment 16 $ rangex 100 10000 $ slow 5 saw)
+
+p 3
+    $ slow 8
+    $ jux rev
+    $ rev . plyWith 8 (|* gain 0.8)
+    $ struct "1*16" $ s "hh" # bank "undo"
+    # n 40
+    # gain 0.8
+    # hpf 1000
+    # sustain 0.01
+
+p 4 
+    $ slow 4
+    $ struct "1"
+    $ s "rings"
+    # note ("[<0 -2>,2,<8 9 10>]")
+    # brightness "<0.2 0.47 0.3 0.44>"
+    # structure "<0.52 0.75>/2"
+    # model 4
+    # gain 1
+    # damping 0.99
+    # sustain 10
+    # tilt 0
+    # octave 3
+    # gain 0.6
+    # orbit 2 
+    # miverb_send 1

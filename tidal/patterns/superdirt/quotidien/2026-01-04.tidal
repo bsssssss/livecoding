@@ -1,0 +1,104 @@
+setcps 0.5
+
+p 3 
+    $ stack [
+        struct "1*5 1*6"
+        $ s "stereos2"
+        # n 4
+        # legato "1.5 1"
+        # begin ("0.22" |+ (segment 32 $ saw |* 0.28 |+ "<0!3 0.000011>"))
+        # gain 1.1
+        # speed (7/8)
+        # accelerate (-0.01)
+        # lp2_f 4000
+        -- # silence
+        ,
+        superimpose (sh ("<1 3>"/7) . (# bank "rolandtr909") . (# gain 0.7) . (# speed 0.7)) $
+        struct "1"
+        $ s "bd:1" # bank "rolandtr808"
+    ]
+    -- # silence
+
+p 2 
+    $ stack [
+        slow 1 $
+        struct "1*5 1*6"
+        $ s "plaits"
+        # sustain 0.1
+        # model 1
+        # timbre 0.1
+        # morph 0.5
+        # gain (segment 32 $ ribbon 1 1 $ shrand 1000)
+        # tilt 0.0
+        # curve (-4)
+        # note (scale "minor" $ floor <$> (segment 32 $ ribbon 3 5 $ shrand 2000 |* 16 |- 11))
+        |* gain 0.9
+        -- # silence
+        ,
+        -- rev $
+        -- slow 2 $
+        struct "1*5 1*6"
+        $ s "plaits"
+        # sustain 0.1
+        # model 2
+        # timbre 0.25
+        # morph 0
+        # gain (segment 32 $ ribbon 1 2 $ shrand 1000)
+        # tilt 0.0
+        # curve (-4)
+        # note (scale "minor" $ floor <$> (segment 32 $ ribbon 8 4 $ shrand 2000 |* 36 |- 9))
+        |* gain 0.80
+        # silence
+    ]
+    # silence
+
+
+p 1 
+    $ stack [
+        struct "1*5 1*6"
+        $ s "stereos2"
+        # n 5
+        # legato "1.5 1"
+        # begin ("0.723" |+ (segment 32 $ saw |* 0.018 |+ "<0!2 -0.05>"))
+        # gain 1.1
+        # speed (8/8)
+        # accelerate (0)
+        # lp2_f 2000
+        # mu 4
+        -- # silence
+    ]
+    -- # silence
+
+
+p 1
+    $ stack [
+        struct "1@5 1@6"
+        $ s "stereos2"
+        # n 8
+        # legato "1.5 1"
+        # begin ("0.313" |+ (segment 32 $ saw |* 0.018))
+        # gain 1.1
+        # speed (7/8)
+        # accelerate (0)
+        # lp2_f 8000
+        # mu 4
+        -- # silence
+    ]
+    -- # silence
+
+p 1 
+    $ stack [
+        slow 2 $
+        struct "1@5 1@6"
+        $ s "stereos2"
+        # n 10
+        # legato "2.5 2"
+        # begin ("0.223" |+ (segment 32 $ saw |* 0.018))
+        # gain 1.1
+        # speed ("[3, 2]"/12)
+        # accelerate (0)
+        # lp2_f 8000
+        # mu 4
+        -- # silence
+    ]
+    -- # silence
