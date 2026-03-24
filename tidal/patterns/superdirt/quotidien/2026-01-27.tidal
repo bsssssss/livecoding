@@ -1,0 +1,42 @@
+setcps 0.7
+
+p 2
+    $ slow 18
+    $ stack [
+        juxBy 0.4 (slow 1.1 . (|+ begin 0.08)) $
+        begin (segment 64 $ ribbon 0 1 $ fast 5 saw |* (1/10000) |+ 0.1)
+        # s "stereos4"
+        # n 13
+        # legato 5
+        # tilt 0.5
+        # bpf (segment 64 $ rangex 100 10000 $ ribbon 10 1 $ fast 2 perlin) # bpq 3
+        # speed ("1 2 3"/3)
+        |+ begin (segment 64 $ ribbon 10 4 $ fast 9 perlin |* (1/100))
+    ]
+
+p 1
+    $ slow 19
+    $ stack [
+        juxBy 0.4 (slow 1.1 . (|+ begin 0.08)) $
+        begin (segment 64 $ ribbon 0 1 $ fast 5 saw |* (1/10000) |+ 0.1)
+        # s "stereos3"
+        # n 2
+        # legato 5
+        # tilt 0.5
+        # bpf (segment 64 $ rangex 100 10000 $ ribbon 10 1 $ fast 2 perlin) # bpq 3
+        # speed ("1 2 3"/3)
+        |+ begin (segment 64 $ ribbon 10 4 $ fast 9 perlin |* (1/100))
+    ]
+
+setbpm 190
+
+p 1 
+    $ slow 2
+    $ jux (sh (3/16))
+    $ stack [
+        s (pace 8 "bd lt@2 lt@3 cp@4")
+        # bank "rolandtr808"
+        ,
+        s (pace 8 $ rev $ "bd lt@2 lt@3 cp@4")
+        # bank "rolandtr808" |* speed 2
+    ]

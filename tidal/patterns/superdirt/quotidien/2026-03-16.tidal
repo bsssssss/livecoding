@@ -1,0 +1,29 @@
+-- 2026-03-16
+setcps (2/3)
+
+p 1 
+    $ stack [
+        sh ("<0 0 3>"/8) $
+        s "bd(3,8)*2" # bank "leg"
+        # n 10
+        # note (-2)
+        ,
+        slow 2 $
+        sh (1/8) $
+        s "< bd [bd hh] >(3,8,<0 3 0 [3 1]>)*2" # bank "leg"
+        # n 11
+        # sustain 0.2
+        ,
+        -- slow 4 $
+        mask ("0 1 0 1 1 0 0 0") $
+        struct "1*4"
+        $ s "rolandtr606_hh"
+        # note (-30)
+        # gain 0.8
+        ,
+        sh (1/4) $
+        sh (3/16) $
+        s "sd" # bank "leg"
+        # n 20 # sustain 0.1
+        -- # silence
+    ]

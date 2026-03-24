@@ -1,0 +1,19 @@
+-- 2026-03-06
+setcps (3/4)
+
+p 1 
+    $ slow 32
+    $ stack [
+        jux (fast (5/6) . (# timbre (segment 32 $ range 0.2 0.8 $ isaw))) $
+        slow 2 $
+        superimpose ( fast (3/4) . (|+ note (-2)) . (|* gain 0.9) ) $
+        note "[0, 2, 4]*8"
+        # legato (segment 32 $ range 0.2 2 $ tri) # tilt (segment 32 $ range 0.003 0.99 $ slow 4 saw)
+        # s "braids"
+        # model 21
+        # timbre (segment 32 $ range 0.0 0.9 $ saw)
+        # lpf 800
+        # hpf 800
+        # octave 1
+        # miverb_send 0.5
+    ]

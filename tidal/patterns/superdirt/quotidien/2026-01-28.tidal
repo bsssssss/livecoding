@@ -1,0 +1,12 @@
+setcps 1
+
+p 1
+    $ stack [
+        slow 4 $
+        while "{1 0 0}%5" (fast 2) $
+        juxBy 0.2 (rev . fast 2 . (|* gain 0.8) . sh (5/8)) $
+        s "bd [sd, bd]*2 <hh oh> sd"
+        # bank "rolandtr606"
+        # legato 0.25
+        # speed (segment 32 $ range 1 0.2 $ saw)
+    ]

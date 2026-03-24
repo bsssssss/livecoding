@@ -1,0 +1,63 @@
+setcps 1
+
+do
+-- resetCycles
+p 1 
+    $ stack [
+        s "adecoup"
+        # n 23
+        # begin (18.1/100)
+        # tilt 0.5
+        # plat 0.9
+        # legato 1.5
+        # note (-12)
+        # gain 0.77
+        # lp2_f 200
+        # silence
+        ,
+        slow 1.2 $
+        s "<adecoup ~>"
+        # n 23
+        # begin (22/100)
+        # tilt 0.9
+        # plat 0.2
+        # legato 0.75
+        # bpf 1000
+        # note (-7)
+        -- # silence
+        ,
+        slow 1.5 $
+        s "<adecoup>"
+        # n 23
+        # begin (37.8/100)
+        # tilt 0.9
+        # plat 0.2
+        # legato 1.25
+        # bpf 600
+        # gain 0.9
+        # silence
+        ,
+        slow 1.4 $
+        struct "<1 1 _ 1@1.2 1 ~>" $
+        s "<adecoup>"
+        # n 24
+        # begin (84/100)
+        # tilt 0.9
+        # plat 0.2
+        # legato 1.25
+        # bpf ("<7000 5000 3000 2000>" |* 0.4)
+        # bpq 2
+        # gain 0.67
+        # silence
+        ,
+        slow 1.5 $
+        s "<~ adecoup>"
+        # n 24
+        # begin (85.5/100)
+        # tilt 0.9
+        # plat 0.2
+        # legato 1.25
+        # bpf 3000
+        # gain 0.9
+        # silence
+    ]

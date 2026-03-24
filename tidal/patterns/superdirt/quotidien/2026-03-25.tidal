@@ -1,0 +1,138 @@
+setcps 1
+
+do
+-- resetCycles
+-- p 1 
+xfadeIn 1 32
+    $ stack [
+        struct "1@3 0 1@4 0"
+        $ s "adecoup"
+        # n 10
+        # legato 0.25
+        # tilt 0.1
+        # plat 0.25
+        # begin 0.1
+        # bpf 400
+        # mu 2
+        # speed (2/3)
+        ,
+        struct (inv "1@3 0@2 1@4 0")
+        $ s "adecoup"
+        # n 10
+        # legato "<1 2 1 2 2 1>"
+        # tilt 0.1
+        # plat 0.25
+        # begin 0.62
+        # gain 0.9
+        # silence
+        ,
+        slow 2 $
+        struct "<1>"
+        $ s "adecoup"
+        # n 11
+        # legato 1
+        # tilt 0.5
+        # plat 0.9
+        # begin 0.62
+        # gain 0.8
+        # bpf 600
+        ,
+        slow 3 $
+        struct "<1>"
+        $ s "adecoup"
+        # n 20
+        # legato 2
+        # tilt 0.9 # plat 0.0 # curve 4
+        # begin 0.50
+        # gain 0.89
+        # speed (1)
+        # lpf 1000
+        |* gain (segment 16 $ range 0.4 1 $ slow 64 saw)
+        -- # bpf 600
+    ]
+    |+ begin 0.13
+
+xfadeIn 1 16 
+-- p1
+    $ stack [
+        struct "1@3 0 1@4 0"
+        $ s "adecoup"
+        # n 10
+        # legato 0.25
+        # tilt 0.1
+        # plat 0.25
+        # begin 0.1
+        # bpf 400
+        # mu 2
+        # speed (2/3)
+        # silence
+        ,
+        struct (inv "1@3 0@2 1@4 0")
+        $ s "adecoup"
+        # n 10
+        # legato "<1 2>"
+        # tilt 0.1
+        # plat 0.25
+        # begin 0.62
+        ,
+        slow 2 $
+        struct "<1>"
+        $ s "adecoup"
+        # n 11
+        # legato 1
+        # tilt 0.5
+        # plat 0.9
+        # begin 0.62
+        # gain 0.8
+        # bpf 600
+    ]
+
+xfadeIn 1 32 
+-- p1
+    $ stack [
+        rev $
+        struct "1@3 0 1@4 0"
+        $ s "adecoup"
+        # n 10
+        # legato 0.25
+        # tilt 0.1
+        # plat 0.25
+        # begin 0.1
+        # bpf 400
+        # mu 2
+        # speed (2/3)
+        # silence
+        ,
+        struct (inv "1@3 0@2 1@4 0")
+        $ s "adecoup"
+        # n 10
+        # legato "<1 2>"
+        # tilt 0.1
+        # plat 0.25
+        # begin 0.2
+        # lpf 100 # lpq 0.2
+        # silence
+        ,
+        slow 2 $
+        struct "<1>"
+        $ s "adecoup"
+        # n 11
+        # legato 1
+        # tilt 0.5
+        # plat 0.9
+        # begin 0.82
+        # gain 0.8
+        # bpf 600
+        # silence
+        ,
+        slow 5 $
+        struct "<1>"
+        $ s "adecoup"
+        # n 11
+        # legato 1
+        # tilt 0.5
+        # plat 0.9
+        # begin 0.5
+        # gain 0.9
+        # bpf 500
+    ]

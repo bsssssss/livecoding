@@ -1,0 +1,17 @@
+-- 2026-03-12
+setcps (2/3)
+
+p 1 
+    $ superimpose (slow (6/4) . (# speed 1) . (|* gain 0.8))
+    $ stack [
+        s (pace 16 "bd ~ bd!3 ~ bd!5 bd@3 bd@3 bd@3 ~@6")
+        # bank "rolandtr808"
+        ,
+        sh (3/16) $
+        s (pace 16 "sd ~ sd!3 ~ sd!5 sd@3 sd@3 sd@3 ~@6")
+        # bank "rolandtr808"
+        ,
+        sh (6/16) $
+        s (pace 16 "hh ~ hh!3 ~ hh!5 hh@3 hh@3 oh@3 ~@6")
+        # bank "rolandtr808"
+    ]
