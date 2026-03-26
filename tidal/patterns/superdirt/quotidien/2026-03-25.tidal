@@ -136,3 +136,101 @@ xfadeIn 1 32
         # gain 0.9
         # bpf 500
     ]
+
+
+setcps 0.5
+
+do
+resetCycles
+p 1 
+    $ stack [
+        echoWith "<5 6>" (1/4) (
+            (|* legato 1.8) 
+            . (|+ begin (20/1000)) 
+            . (# tilt (segment 32 $ slow 3 saw)) 
+            . (# bpf "1000 500") . (# bpq 2)
+        ) $
+        struct "1"
+        $ s "longs"
+        # n 2
+        # legato (1/12)
+        # tilt 0
+        # begin 0.52
+        # speed (2/5)
+        |* gain 0.8
+        # shape 0.1
+        -- # silence
+        ,
+        slow (4/3) $
+        sh (2/3) $
+        echoWith "<5 6>" (1/4) (
+            (|* legato 1.8) 
+            . (|+ begin (20/1000)) 
+            . (# tilt (segment 32 $ slow 3 saw)) 
+            . (# bpf "200 2000") . (# bpq 2)
+        ) $
+        struct "1"
+        $ s "longs"
+        # n 3
+        # legato (1/16)
+        # tilt 0
+        # begin 0.50
+        # speed (2/5)
+        # shape 0.2
+    ]
+
+xfadeIn 1 32
+-- p 1 
+    $ stack [
+        echoWith "<5 6>" (1/4) (
+            (|* legato 1.8) 
+            . (|+ begin (20/1000)) 
+            . (# tilt (segment 32 $ slow 3 saw)) 
+            . (# bpf "100 500") . (# bpq 2)
+        ) $
+        struct "1"
+        $ s "longs"
+        # n 5
+        # legato (1/12)
+        # tilt 0
+        # begin 0.75
+        # speed (5/5)
+        |* gain 0.8
+        # shape 0.1
+        # silence
+        ,
+        slow 4 $
+        echoWith "<5 6>" (1/4) (
+            (|* legato 1.8) 
+            . (|+ begin (23/1000)) 
+            . (# tilt (segment 32 $ slow 3 saw)) 
+            . (# bpf "50 8000") . (# bpq 2)
+        ) $
+        struct "1"
+        $ s "longs"
+        # n 8
+        # legato (1/16)
+        # tilt 0
+        # begin 0.18
+        # speed ((4/5) * 0.5)
+        # shape 0.0
+        # lp2_f 800
+        # gain 1.2
+        # silence
+        ,
+        struct "1"
+        $ s "longs"
+        # n 8
+        # legato 0.9
+        # tilt 0
+        # begin (0.53 |+ (segment 32 $ range 0 0.001 $ slow 5 $ saw))
+        # speed (4/5)
+        # shape 0.0
+        # lp2_f 600
+        # bpf 2000
+        # gain 0.66
+        -- # silence
+    ]
+
+
+
