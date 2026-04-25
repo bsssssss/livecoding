@@ -1,0 +1,103 @@
+setcps 1
+
+p 1
+    $ while "<0 0 1>" (rev)
+    $ stack [
+        while "0 <0 1>/1.125" (slow 2) $
+        s "bd@3 cp@2 bd@3 cp@3"
+        # bank "rolandmc303"
+        # legato 1
+        ,
+        -- slow (3/2) $
+        sh ("<3 <5 -6>>"/11) $
+        s "oh@3 hh@2 lt@3 hh@3"
+        # bank "rolandmc303" # speed "1"
+        # legato 0.2
+        # tilt 0
+        # mu 1
+        ,
+        struct "1*11"
+        $ s "plaits"
+        # note (scale "minor" $ "[<0 -1 -2>/4, 1 2 3, 4 5]")
+        # tilt 0
+        # curve (-4)
+        # gain (segment 32 $ range 0.3 1 $ fast (24/13) tri)
+        ,
+        struct "1*11"
+        $ s "plaits" # model 2
+        # note (scale "minor" $ "[<0 -1 -2>/4, 1 2 3, 4 5]" |+ "<2 3 4>/6")
+        # tilt 0
+        # curve (-4)
+        # gain (segment 32 $ range 0.9 0.4 $ fast (24/13) tri)
+    ]
+
+do
+resetCycles
+-- xfadeIn 1 8 
+p1 $
+    $ stack [
+        mask "<1!10 0!6 1!8 0!5>" $
+        s "longs"
+        # legato 1
+        # gain 1
+        # begin (0.5 |+ (-0.01))
+        # n 19
+        # bpf 200
+        # speed "<1!5 0.75@3 1!2 0.5!7>"
+        -- # silence
+        ,
+        s "longs"
+        # legato 1
+        # gain 0.9
+        # begin 0.92
+        # n 19
+        # bpf 8000
+        # silence
+        ,
+        slow 8 $
+        s "longs"
+        # legato 2
+        # tilt 0.8
+        # gain 0.94
+        # begin 0.22
+        # n 24
+        # bpf 900
+        ,
+        s "<~ <~ longs>>"
+        # legato 1
+        # tilt 0.9
+        # gain 1
+        # begin 0.1
+        # n 21
+        ,
+        mask "<1!7 0@3.5>" $
+        superimpose ( mask "<0@2 1>" . sh (3/5) . (|* gain 0.9)) $
+        struct "<[1@3 1@2] [1@3 1@3 0@2]>"
+        $ s "bd" # bank "rolandmc303"
+        # bpf 100
+        # gain 0.7
+        # silence
+        ,
+        -- rev $
+        sh ("<6 6 3>"/8) $
+        struct "<[1@3 0@2] [0@3 0@3 1@2]>"
+        $ s "sd" # bank "rolandmc303"
+        # bpf (segment 32 $ rangex 1000 200 $ fast 2 square)
+        # bpq 4
+        # gain 0.7
+        # silence
+        ,
+        juxBy 0.4 (rev . sh (-1/2)) $
+        sh (1/4) $
+        mask "<0!32 1!32>" $
+        mask "<<1 1 0> 1 [1 0]>" $
+        struct (inv "<[1@3 0@2] [0@3 0@3 1@2]>")
+        $ s "oh" # bank "rolandmc303"
+        # bpf 2000 # bpq 2
+        # tilt 0.9
+        # curve 4
+        # gain 0.5
+        # legato 0.5
+        # speed (1.1 |* (segment 32 $ range 0.5 1 $ slow 12 saw))
+        # silence
+    ]

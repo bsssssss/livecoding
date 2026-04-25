@@ -1,0 +1,42 @@
+setcps 1
+
+do
+-- resetCycles
+xfadeIn 1 18
+    $ (|+ begin (0.2))
+    $ superimpose (
+        slow 2 . (|+ begin 0.1)
+    )
+    $ stack [
+        struct "<1 1@1.5>"
+        $ s "normalized"
+        # legato 1
+        # n 14
+        # begin 0.5
+        # bpf 2000
+        # tilt 0.9
+        # curve 2
+        # speed (1/2)
+        ,
+        sh (1/2) $
+        struct "<1 1@1.5>"
+        $ s "normalized"
+        # legato 1
+        # n 14
+        # begin 0.39
+        # bpf 2000
+        # speed (2/3)
+        # legato 0.6
+        ,
+        sh (1/3) $
+        struct "<1 1@1.5>"
+        $ s "normalized"
+        # legato 1
+        # n 14
+        # begin 0.69
+        # bpf 100
+        # speed (2/3)
+        # legato 0.75
+    ]
+
+xfadeIn 16 1 $ silence

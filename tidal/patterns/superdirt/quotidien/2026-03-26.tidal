@@ -1,0 +1,53 @@
+setcps 1
+
+do
+let gain_mod s = segment 16 $ range 0.7 1 $ slow 64 $ sh s $ tri
+-- resetCycles
+xfadeIn 1 12 
+    $ stack [
+        struct "<1 _>" $
+        s "longs" # legato 1
+        # n 15
+        # begin "0.4"
+        # lp2_f (segment 16 $ rangex 2000 800 $ slow 9 tri) # lp2_q 0.5
+        |* gain (slow 1.125 $ gain_mod (2/3) |* 1.1)
+        # silence
+        ,
+        slow (1 + (3/14)) $
+        struct "<1 _>" $
+        s "longs" # legato 2
+        # n 17
+        # begin "<0.4 0.404>/2"
+        # bpf 200
+        # gain 0.85
+        # tilt 0.5
+        # lpf 700
+        |* gain (gain_mod (2/3))
+        # silence
+        ,
+        slow (2 + (9/12)) $
+        sh 0.5 $
+        struct "<1 _>" $
+        s "longs" # legato 1.5
+        # n 17
+        # begin "<0.6>"
+        # bpf 700
+        # gain 0.7
+        # tilt 0
+        # speed 0.25
+        |* gain (gain_mod (1/3))
+        # silence
+        ,
+        slow (1 + (1/16)) $
+        sh 0.5 $
+        struct "<1 _>" $
+        s "longs" # legato 2
+        # n 17
+        # begin "0.61"
+        # bpf 800 # lpf 800
+        # gain 0.88
+        # tilt 0.5
+        # speed 0.25
+        |* gain (gain_mod (1/2))
+        -- # silence
+    ]

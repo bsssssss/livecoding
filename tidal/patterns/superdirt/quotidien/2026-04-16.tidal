@@ -1,0 +1,62 @@
+setcps 1
+
+p 1 
+    $ stack [
+        struct "<1@2 1@1.5 ~>"
+        $ s "plaits" # model 4
+        # note (scale "minor" "[-7,2,4,5]")
+        # octave 1
+        # note (-12)
+        # tilt 0.2
+        # plat 0.5
+        # timbre 0.4
+        # timbre_env 0.01
+        # timbre_env_curve (4)
+        # silence
+        ,
+        slow 4 $
+        jux (rev . (slow (4/5))) $
+        superimpose (
+            sh (2/3) . (|+ note 2)
+        ) $
+        note (scale "minor" $ rolledBy (3/11) $ "[-7,2,<4 7 13>,5]")
+        # s "plaits" # model 3
+        # octave 2
+        # tilt 0.0
+        # plat 0.1
+        # curve (-4)
+        # sustain (segment 32 $ rangex 0.01 4 $ shrand 1999)
+        # timbre (segment 32 $ rangex 0.1 0.2 $ shrand 1999)
+        # timbre_env 0.01
+        # timbre_env_curve (4)
+        ,
+        struct (pace 16 "1@3 1@3 1@8 <0 1 0 0 1 0 <0 1>>@1.5 1@2 1@3 1@5 1@5")
+        $ s "bd:34" # bank "leg" # legato 1
+        # speed (segment 16 $ range 1 0.9 $ saw)
+        ,
+        sh (1/2) $
+        slow 1 $
+        struct (pace 16 "1@3 1@3 1@8 0!3 1@2 1@3 1@5 1@5")
+        $ s "hh:43" # bank "leg" # sustain (segment 16 $ range 0.1 0.3 $ shrand 1)
+        # gain (segment 16 $ range 0.4 1.2 $ shrand 1000)
+        # tilt 0
+        # br_f 1240 # br_q 3
+        # speed 0.3
+        ,
+        sh (3/4) $
+        slow 4 $
+        struct (pace 16 "1@3 1@3 1@8 1!3 1@2 1@3 1@5 1@5")
+        $ s "sd:4" # bank "leg" # sustain 0.1
+        # gain (segment 16 $ range 0.4 1.2 $ shrand 1000)
+        # bpf 800 # bpq 4
+        ,
+        sh (15/16) $
+        rev $
+        struct (pace 16 "1@3 1@3 1@8 1!3 1@2 1@3 1@5 1@5")
+        $ s "bd" # bank "leg" # sustain 0.1
+        # lpf 100
+        # mu 2
+        # tilt 0
+        # note (12)
+        # speed (segment 16 $ range 1 3 $ shrand 10)
+    ]

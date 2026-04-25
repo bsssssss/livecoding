@@ -1,0 +1,158 @@
+setcps 1
+
+let chorus_wet = pF "chorus_wet"
+
+p 1 
+    $ stack [
+        superimpose (slow 1.234 . (|* speed 0.9) . (# pan (segment 16 $ shrand 2000)) . (# legato 3) . (|* gain 0.9)) $
+        s "normalized"
+        # n 0
+        # legato 2
+        # begin 0.76998
+        # speed (1/"<7 <6 7.77>>")
+        # gain (segment 32 $ range 0.8 1 $ shrand 1000)
+        # bpf 600
+        # tilt 0
+        ,
+        superimpose (slow 1.234 . (|* speed 0.5)) $
+        slow 2 $
+        s "normalized"
+        # n 0
+        # legato 2
+        # begin 0.29
+        # speed (1/3)
+        # bpf 100
+        # mu 1
+        ,
+        superimpose (slow 1.234 . (|* speed 0.75)) $
+        s "normalized"
+        # n 7
+        # legato "<1 1.5>"
+        # begin 0.69
+        # speed (1)
+        # bpf 500
+        # tilt 0.9
+        # gain 0.97
+    ]
+
+do
+-- resetCycles
+xfadeIn 1 16
+    $ slow 2
+    $ stack [
+        s "normalized"
+        # n 10
+        # legato 1.25
+        # br_f 1000
+        # br_q 0.7
+        # legato "<0.5 0.66>"
+        # silence
+        ,
+        s "normalized"
+        # n 14
+        # legato 1.25
+        # begin 0.54
+        # gain 1.4
+        # bpf 2000
+        # bpq 8
+        # silence
+        ,
+        superimpose (slow 4 . (|+ note (-12))) $
+        s "normalized"
+        # n 13
+        # legato 1.25
+        |* legato "<1 1.5>"
+        # begin 0.95
+        # br_f 500
+        # br_q 2
+        # note "[0, -5, -7]"
+        |+ note (-7)
+        # silence
+    ]
+
+-- do
+-- resetCycles
+xfadeIn 1 16 
+    $ superimpose ((|* speed 4) . (|* gain 0.8))
+    $ jux (slow (11/10) . rev)
+    $ struct "1*8 1*9"
+    $ begin (rand |* 0.001 |+ 0.375)
+    # n "2" 
+    # legato 3
+    # tilt (segment 32 $ slow 4 $ tri)
+    # gain 1.1
+    # s "normalized" 
+    # speed ("[2, 3 3.01]")
+    # bpf 500
+    # silence
+
+p 2 
+    $ note (scale "minor" $ run 8)
+    # s "plaits"
+    # tilt 0
+    # gain 0.6
+    -- # silence
+
+p 1
+    $ slow 2
+    $ (|* speed 0.9)
+    $ (|+ begin 0.2)
+    $ stack [
+        s "normalized" 
+        # legato 0.8 
+        # n 10 
+        # gain 0.9 
+        # tilt 0
+        ,
+        sh (1/2) $
+        s "normalized" 
+        # legato 0.5 
+        # tilt 0.9
+        # n 11 
+        # gain 1
+        # begin 0.2
+    ]
+    # legato 2
+    |+ n 11
+
+p 1
+    $ slow 2
+    $ stack [
+        while "<0 [0|1]>" (sh (1/2) . rev) $
+        jux rev $
+        superimpose (sh (2/8) . (|+ n 1) . (|+ note 2)) $
+        s "bd(3,8) [<bd [bd, oh]> hh <cp oh> ~]*2"
+        # bank "bossdr660"
+        # gain (segment 32 $ range 0.7 1 $ ribbon 1 1 $ fast 19 saw)
+        # speed ("[3 2] 1")
+        # legato 1
+        # bpf (segment 32 $ rangex 100 10000 $ fast "<4 3.2>/8" saw)
+        # bpq 4
+        ,
+        superimpose (sh (3/8) . (|+ note 7)) $
+        struct "1*16" $ note (scale "minor" $ floor <$> (segment 32 $ ribbon 1 1 $ shrand 10 |* 35))
+        # s "plaits" # sustain 0.4 # tilt 0.0 # curve (-4)
+        # gain 0.8
+        |* gain (ribbon "<1 2@2 1 1 1 3>" "<1 1 1 2@2>" $ "[0|1]*16")
+        # timbre (ribbon 2 1 $ saw )
+        # morph (ribbon 2 1 $ saw )
+        # harm (ribbon 2 1 $ saw )
+        # model 4
+        # octave 1
+        # mu 2
+        -- # silence
+    ]
+
+p 1 
+    $ slow 2
+    $ stack [
+        jux (slow 1.3 . rev) $
+        note (scale "minor" $ floor <$> (
+            "0@3 1@2" |+| (slow 3 $ run 4 |* 9) |+ (segment 32 $ range (-2) 2 $ slow 4 saw)
+        ))
+        # s "plaits"
+        # sustain ("[1|2|3]*8") # tilt 0
+        # lpf ("200 300")
+        # octave ("5 4" |- 1)
+    ]
+    # miverb_send 0.7

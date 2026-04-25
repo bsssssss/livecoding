@@ -1,0 +1,59 @@
+setcps 0.5
+
+p 1
+    $ while "[0|1]" (rev . sh (1/4))
+    $ stack [
+        slow 2 $
+        superimpose (
+            slow 2 . (# bpf "<700 4000>") . (|+ begin 0.08) . (# speed 2) . (# tilt 0.9) . (# curve 4) . (|* gain 0.8)
+        ) $
+        struct "1@3 1@2"
+        $ s "normalized"
+        # n 6
+        # legato 1.25
+        # begin 0.731
+        # speed (1)
+        # shape 0.1
+        |* gain 0.7
+        ,
+        struct "1@3 1@2"
+        $ s "leg_bd"
+        # sustain 0.1
+        # tilt 0
+        # lpf 100
+        ,
+        sh (2/5) $ slow 2 $
+        struct "1@3 1@2"
+        $ s "leg_bd"
+        # sustain 0.1
+        # tilt 0
+        # bpf 200
+        ,
+        sh (4/5) $ slow 2 $
+        struct "1@3 1@2"
+        $ s "leg_bd:17"
+        # sustain 0.4
+        # tilt 0
+        # curve (-4)
+        # bpf (segment 8 $ rangex 600 800 $ perlin)
+        # bpq 2
+        |* gain 0.8
+        # note 1
+    ]
+
+p 1 
+    $ stack [
+        s "normalized"
+        # legato 1
+        # n 16
+        # begin 0.7
+        ,
+        slow 1.1 $
+        s "normalized"
+        # legato (1.125 |* (segment 16 $ range 1 1.5 $ slow 6 saw))
+        # n 16
+        # begin 0.1
+        # lpf 500
+        # accelerate (-0.05)
+        # speed (1/2)
+    ]

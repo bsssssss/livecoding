@@ -1,0 +1,5 @@
+
+p 1 
+    $ note l("1 2 [3 6 5]" / 2)l
+    # tilt 0
+    # s "plaits"

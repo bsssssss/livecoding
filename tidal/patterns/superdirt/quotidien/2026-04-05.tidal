@@ -1,0 +1,52 @@
+setcps 1
+
+-- do
+-- resetCycles
+-- p 1 
+
+xfadeIn 1 64
+    $ slow 2
+    $ superimpose ((# bpf "[8000|1000|500|200]*2") . slow 1.75 . (|+ begin 0.08) . (|* gain 0.9))
+    $ slow 8
+    $ begin ("0.123" +| ("0@2 2@2 1" / 12))
+    # s "normalized" 
+    # n 24
+    # legato 1.25
+    # tilt (rev "0 0.5 0.9")
+    # speed (0.9 |* "1 0.75 0.5")
+    # bpf 200
+    |* gain (segment 32 $ range 0.8 1 $ shrand 1000)
+    # silence
+
+
+do
+-- resetCycles
+xfadeIn 1 18 
+    $ slow 2 $ (|* speed (1/4))
+    $ stack [
+        jux (rev . slow 1.5) $
+        slow 2 $
+        begin ("0.31" +| ("0@3 2@2 1" / 1000) |+ (slow 3 "0 0.01"))
+        # s "normalized" 
+        # n 32
+        # legato 1
+        # speed (1/2.01)
+        -- # distort 0.2
+        # bpf 100
+        # gain 0.9
+        -- # mu 1
+        ,
+        rev $
+        slow 3 $
+        jux (rev . slow 1.6) $
+        slow 2 $
+        begin ("0.492" +| ("0@3 2@2 1" / 1000) |+ (slow 3 "0 0.01"))
+        # s "normalized" 
+        # n 32
+        # legato 1
+        # speed (1/4)
+        -- # distort 0.2
+        # bpf 333
+        # gain 0.9
+        -- # mu 1
+    ]
