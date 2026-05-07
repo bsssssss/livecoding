@@ -1,0 +1,52 @@
+-- 2026-05-07
+setcps (2/3)
+
+do
+-- resetCycles
+xfadeIn 1 32 
+    $ slow 1.1
+    $ stack [
+        slow 3 $
+        ribbon 1 3 $
+        struct "1*16" $
+        s "longs"
+        # n 1
+        # begin (1/100)
+        |+ begin (segment 32 $ slow 1.5 $ saw |* 0.2)
+        # gain (segment 32 $ rand)
+        # legato "<2 3>/1.5"
+        # br_f (segment 32 $ rangex 100 1000 $ slow 0.6 $ saw)
+        # br_f 0.9
+        # lp2_f "100 <1000 200>"
+        # lp2_q 0.4
+        -- # gain 0
+        # silence
+        ,
+        ribbon 0.1 3 $
+        struct "1*16" $
+        s "longs"
+        # n 1
+        # begin 0.13
+        |+ begin (segment 32 $ saw |* 0.21)
+        # gain (segment 32 $ rand)
+        # legato 3
+        # tilt 0
+        # bpf (segment 32 $ rangex 300 13000 $ slow 0.6 $ saw)
+        # bpq 1
+        |* speed (1)
+        # gain 0.0
+        -- # silence
+        ,
+        slow 8 $
+        superimpose ( (|* speed 2) . (|* gain 0.8) . (|* legato 0.25) ) $
+        slow 3 $
+        s "longs"
+        # n 4
+        -- # begin 0.7
+        # begin 0.28
+        # legato 2
+        # gain 0.5
+        # note (-7)
+        # tilt 0.5
+        -- # silence
+    ]

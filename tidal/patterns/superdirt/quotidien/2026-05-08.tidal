@@ -1,0 +1,35 @@
+-- 2026-05-08
+setcps (0.5)
+
+do
+-- resetCycles
+xfadeIn 1 8 
+    $ stack [
+        s "longs" # n 28
+        # begin 0.23
+        # legato 1
+        # bpf 100
+        # silence
+        ,
+        sh (1/2) $
+        s "longs" # n 28
+        # begin 0.33
+        # legato 1.3
+        # tilt 0.9 # curve 4
+        # bpf 200
+        ,
+        slow 2 $
+        s "longs" # n 29
+        # begin 0.50
+        # legato 1
+        # speed (1/2)
+        -- # silence
+        ,
+        slow 4 $
+        s "longs" # n 29
+        # begin 0.7
+        # legato 1
+        # speed (1/2)
+        # silence
+        -- # silence
+    ]
