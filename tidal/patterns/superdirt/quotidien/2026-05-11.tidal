@@ -1,0 +1,54 @@
+-- 2026-05-11
+setcps (0.45)
+
+xfadeIn 1 7 
+    $ stack [
+        slow 2 $
+        superimpose (
+            slow 1.5 . (# n 13) . (# begin 0.2) . (|+ note 0) . (# gain 0.9) . (|* speed (1/2))
+        ) $
+        s "longs"
+        # n 28
+        # begin (40/100)
+        # legato "<1 0.8>"
+        # tilt "<0 0.9>"
+        # gain 0.8
+        -- # bpf 800
+        ,
+        slow 5 $
+        s "longs"
+        # n 29
+        # begin (66/100)
+        # legato "<0.7 0.5>"
+        # speed (1/3)
+        # gain 1.2
+        # orbit 1
+        # bpf (segment 1 $ rangex 100 400 $ shrand 1000)
+        # bpq 3
+        # pF "miverb_send" 0.7 
+        # pF "miverb_time" (segment 2 $ range 0.2 0.99 $ shrand 10) 
+    ]
+
+p 1 
+    $ stack [
+        s "longs"
+        # begin "<0.3!3 0.4>"
+        # n 6
+        # legato 1
+        ,
+        s "longs"
+        # begin 0.8
+        # n 6
+        # legato 1
+        # speed (1/2)
+        # gain 0.9
+        # coarse 9
+        ,
+        s "longs"
+        # begin 0.82
+        # n 6
+        # legato 2
+        # speed (1/1.3)
+        # bpf 200
+        # gain 1.1
+    ]
